@@ -9,10 +9,21 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 class _MyHomePageState extends State<MyHomePage> {
+
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(items: [
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color(0xFF0F141A),
+        unselectedItemColor: Color(0xFF59738C),
+        currentIndex: currentIndex,
+        onTap: (value) {
+          setState(() {
+            currentIndex=value;
+          });
+        },
+        items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
         BottomNavigationBarItem(icon: Icon(Icons.play_circle), label: "Lessons"),
         BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Calendar"),

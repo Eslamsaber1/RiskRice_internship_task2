@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task2/profile_page.dart';
 
 class LessonsDetails extends StatefulWidget {
   const LessonsDetails({super.key});
@@ -7,15 +8,33 @@ class LessonsDetails extends StatefulWidget {
 }
 
 class _LessonsDetailsState extends State<LessonsDetails> {
+   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.black,), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.play_circle,color: Colors.black,), label: "Lessons"),
-        BottomNavigationBarItem(icon: Icon(Icons.tv_outlined,color: Colors.black,), label: "Progress"),
-        BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.black,), label: "Profile"),
+
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Color(0xFF0F141A),
+        unselectedItemColor: Color(0xFF59738C),
+        currentIndex: currentIndex,
+        onTap: (value) {
+          setState(() {
+            currentIndex=value;
+          });
+          if(currentIndex==3){
+           Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          }
+        },
+        items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+        BottomNavigationBarItem(icon: Icon(Icons.play_circle), label: "Lessons"),
+        BottomNavigationBarItem(icon: Icon(Icons.tv_outlined), label: "Progress"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
       ]),
+     
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
@@ -105,3 +124,5 @@ class _LessonsDetailsState extends State<LessonsDetails> {
     );
   }
 }
+
+
